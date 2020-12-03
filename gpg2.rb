@@ -38,7 +38,6 @@ class Export < CMD
             run("gpg --armor --export #{pubkey_name}")
         end
     end
-=======
 	def run(cmd)
 		stdout, status = Open3.capture2(cmd)
 	end
@@ -71,29 +70,21 @@ class Export < CMD
 			run("gpg --armor --export #{pubkey_name}")
 		end
 	end
->>>>>>> 663c5a5aa43a3490a7018841ae99bd7ce4571a36
 end
 
 
 
-<<<<<<< HEAD
-puts ""
-=======
-puts
->>>>>>> 663c5a5aa43a3490a7018841ae99bd7ce4571a36
 # Import key
 #Import.new.import_key("t.txt")
 
 # Encrypt text
-#puts Encrypt.new.encrypt_msg("Hi", "BirdFart") 
+#puts Encrypt.new.encrypt_msg("Hi", "") 
 
 # Export Public key
-<<<<<<< HEAD
-#puts Export.new.export_public("BirdFart")
+
+#puts Export.new.export_public("")
 
 
 Utils.new.get_fingerprint("t.txt")
 puts
-=======
-#puts Export.new.export_public("BirdFart")
->>>>>>> 663c5a5aa43a3490a7018841ae99bd7ce4571a36
+
