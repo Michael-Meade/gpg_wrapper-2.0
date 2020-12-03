@@ -1,5 +1,6 @@
 require 'open3'
 class CMD
+<<<<<<< HEAD
     def run(cmd)
         stdout, status = Open3.capture3(cmd)
     end
@@ -37,11 +38,49 @@ class Export < CMD
             run("gpg --armor --export #{pubkey_name}")
         end
     end
+=======
+	def run(cmd)
+		stdout, status = Open3.capture2(cmd)
+	end
+end
+class Import < CMD
+	def import_key(file)
+		run("gpg --import #{file}")
+	end
+end
+class Encrypt < CMD
+	def encrypt_msg(text_to_encrypt, pubkey_name)
+		run("echo '#{text_to_encrypt}' | gpg  --encrypt -a -r '#{pubkey_name}' --always-trust")
+	end
+	def encrypt_file(file_to_encrypt, pubkey_name)
+		run("echo '#{text_to_encrypt}' | gpg  --encrypt -a -r '#{pubkey_name}' --always-trust")
+	end
+end
+class Sign < CMD
+	# note: its not a good idea to hard code your pass. 
+	def sign_msg(pass, pubkey_name, file)
+		run("echo '#{pass}' | gpg --batch --yes --passphrase-fd 0 --local-user #{pubkey_name} --sign #{file}")
+	end
+end
+
+class Export < CMD
+	def export_public(pubkey_name, file_name = nil)
+		if file_name.nil?
+			run("gpg --armor --export #{pubkey_name} > #{filename}")
+		else
+			run("gpg --armor --export #{pubkey_name}")
+		end
+	end
+>>>>>>> 663c5a5aa43a3490a7018841ae99bd7ce4571a36
 end
 
 
 
+<<<<<<< HEAD
 puts ""
+=======
+puts
+>>>>>>> 663c5a5aa43a3490a7018841ae99bd7ce4571a36
 # Import key
 #Import.new.import_key("t.txt")
 
@@ -49,8 +88,12 @@ puts ""
 #puts Encrypt.new.encrypt_msg("Hi", "BirdFart") 
 
 # Export Public key
+<<<<<<< HEAD
 #puts Export.new.export_public("BirdFart")
 
 
 Utils.new.get_fingerprint("t.txt")
 puts
+=======
+#puts Export.new.export_public("BirdFart")
+>>>>>>> 663c5a5aa43a3490a7018841ae99bd7ce4571a36
