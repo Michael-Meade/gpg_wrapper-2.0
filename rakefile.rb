@@ -12,11 +12,7 @@ task :commit, :message  do |t, args|
 
   system "git add ."
   system "git commit -a -m \"#{message}\""
-<<<<<<< HEAD
   system "git push -u origin main"
-=======
-  system "git push -u origin master"
->>>>>>> 663c5a5aa43a3490a7018841ae99bd7ce4571a36
 end
 
 
@@ -30,20 +26,11 @@ task :deploy, :message do |t, args|
   puts "pushing to remote:"
   system "git remote -v"
   Rake::Task[:push].execute 
-<<<<<<< HEAD
   system "git push -u origin main"
-=======
-  system "git push -u origin master"
->>>>>>> 663c5a5aa43a3490a7018841ae99bd7ce4571a36
-  
 end
 
 #push only
 desc "push to remotes"
 task :push do
-<<<<<<< HEAD
   system "git push -u origin main"
-=======
-  system "git push -u origin master"
->>>>>>> 663c5a5aa43a3490a7018841ae99bd7ce4571a36
 end

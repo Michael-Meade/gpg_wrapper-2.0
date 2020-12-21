@@ -13,8 +13,9 @@ class Encrypt < CMD
     def encrypt_msg(text_to_encrypt, pubkey_name)
         run("echo '#{text_to_encrypt}' | gpg  --encrypt -a -r '#{pubkey_name}' --always-trust")
     end
-    def encrypt_file(file_to_encrypt, pubkey_name)
-        run("echo '#{text_to_encrypt}' | gpg  --encrypt -a -r '#{pubkey_name}' --always-trust")
+    def encrypt_file(file_to_encrypt, pubkey_path)
+        fprint = Utils.new.get_fingerprint(pubkey_path)
+        run("cat '#{file_to_encrypt}' | gpg  --encrypt -a -r '#{fprint}' --always-trust")
     end
 end
 class Sign < CMD
@@ -48,8 +49,9 @@ puts ""
 # Encrypt text
 #puts Encrypt.new.encrypt_msg("Hi", "") 
 
+puts Encrypt.new.encrypt_file("rakefile.rb", "t.txt")
 # Export Public key
 #puts Export.new.export_public("")
 
 
-Utils.new.get_fingerprint("t.txt")
+#puts Utils.new.get_fingerprint("t.txt")
